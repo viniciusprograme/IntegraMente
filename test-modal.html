@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Modal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            padding: 2rem;
+        }
+        .test-btn {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Teste de Modais</h1>
+    <button class="test-btn" onclick="openModal('modal-teste1')">Abrir Modal 1</button>
+    <button class="test-btn" onclick="openModal('modal-teste2')">Abrir Modal 2</button>
+
+    <!-- Modal Teste 1 -->
+    <div id="modal-teste1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-teste1')">&times;</span>
+            <h2>Modal de Teste 1</h2>
+            <p>Este é um teste do modal 1.</p>
+            <p>Clique no X para fechar ou clique fora da caixa.</p>
+        </div>
+    </div>
+
+    <!-- Modal Teste 2 -->
+    <div id="modal-teste2" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-teste2')">&times;</span>
+            <h2>Modal de Teste 2</h2>
+            <p>Este é um teste do modal 2.</p>
+            <form class="form-inscricao">
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        console.log('Teste Modal Carregado');
+        
+        function openModal(modalId) {
+            console.log('Abrindo modal:', modalId);
+            const modal = document.getElementById(modalId);
+            console.log('Modal encontrado:', modal);
+            if (modal) {
+                modal.classList.add('active');
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            console.log('Fechando modal:', modalId);
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Fechar modal ao clicar fora do conteúdo
+        window.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal')) {
+                const modalId = event.target.id;
+                closeModal(modalId);
+            }
+        });
+
+        // Fechar modal com ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal.active');
+                modals.forEach(modal => {
+                    closeModal(modal.id);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

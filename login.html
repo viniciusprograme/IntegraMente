@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - IntegraMente</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Estilos específicos da página de login */
+        .login-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1920&h=1080&fit=crop&crop=center');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .login-container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .login-card {
+            background: rgba(235, 247, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(2, 39, 59, 0.3);
+            max-width: 450px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideUp 0.6s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-subtitle {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group input {
+            padding: 1rem;
+            border: 2px solid rgba(99, 130, 196, 0.2);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(99, 130, 196, 0.2);
+            background: white;
+        }
+
+        .form-group input::placeholder {
+            color: #999;
+        }
+
+        .login-btn {
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(70, 40, 109, 0.3);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(99, 130, 196, 0.2);
+        }
+
+        .login-footer p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-footer .support-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-footer .support-link:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            border: 1px solid #f44336;
+            color: #d32f2f;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border: 1px solid #4caf50;
+            color: #2e7d32;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsividade */
+        @media (min-width: 1920px) {
+            .login-card {
+                padding: 4rem;
+            }
+
+            .login-logo {
+                font-size: 3rem;
+            }
+
+            .login-btn {
+                font-size: 1.2rem;
+                padding: 1.2rem;
+            }
+        }
+
+        @media (min-width: 1200px) and (max-width: 1919px) {
+            .login-card {
+                padding: 3.5rem;
+            }
+
+            .login-logo {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1199px) {
+            .login-card {
+                padding: 2.5rem;
+                margin: 1.5rem;
+            }
+
+            .login-logo {
+                font-size: 2.2rem;
+            }
+
+            .login-subtitle {
+                font-size: 1rem;
+            }
+
+            .login-description {
+                font-size: 0.85rem;
+            }
+
+            .form-group input {
+                padding: 0.8rem;
+                font-size: 0.95rem;
+            }
+
+            .login-btn {
+                padding: 0.9rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 480px) and (max-width: 767px) {
+            .login-page::before {
+                opacity: 0.15;
+            }
+
+            .login-card {
+                padding: 2.2rem;
+                margin: 1rem;
+                border-radius: 18px;
+            }
+
+            .login-logo {
+                font-size: 2rem;
+            }
+
+            .login-header {
+                margin-bottom: 1.5rem;
+            }
+
+            .login-subtitle {
+                font-size: 1rem;
+            }
+
+            .form-group {
+                gap: 0.4rem;
+            }
+
+            .form-group label {
+                font-size: 0.95rem;
+            }
+
+            .form-group input {
+                padding: 0.8rem;
+                font-size: 0.95rem;
+            }
+
+            .login-btn {
+                padding: 0.85rem;
+                font-size: 0.95rem;
+                margin-top: 0.8rem;
+            }
+
+            .login-footer {
+                margin-top: 1.5rem;
+                padding-top: 1.5rem;
+            }
+
+            .login-footer p {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 479px) {
+            .login-page::before {
+                opacity: 0.2;
+            }
+
+            .login-container {
+                padding: 1rem;
+            }
+
+            .login-card {
+                padding: 1.5rem;
+                margin: 0;
+                border-radius: 16px;
+                box-shadow: 0 15px 40px rgba(2, 39, 59, 0.25);
+            }
+
+            .login-logo {
+                font-size: 1.8rem;
+            }
+
+            .login-header {
+                margin-bottom: 1.2rem;
+            }
+
+            .login-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .login-description {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+
+            .login-form {
+                gap: 1.2rem;
+            }
+
+            .form-group {
+                gap: 0.3rem;
+            }
+
+            .form-group label {
+                font-size: 0.9rem;
+                font-weight: 500;
+            }
+
+            .form-group input {
+                padding: 0.7rem;
+                font-size: 16px;
+                border-radius: 10px;
+            }
+
+            .login-btn {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+                margin-top: 0.5rem;
+            }
+
+            .login-footer {
+                margin-top: 1.2rem;
+                padding-top: 1.2rem;
+            }
+
+            .login-footer p {
+                font-size: 0.8rem;
+            }
+
+            .support-link {
+                font-size: 0.8rem;
+            }
+
+            .error-message,
+            .success-message {
+                padding: 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .loading-spinner {
+                width: 16px;
+                height: 16px;
+                border-width: 2px;
+            }
+        }
+
+        @media (max-width: 359px) {
+            .login-card {
+                padding: 1.2rem;
+                border-radius: 14px;
+            }
+
+            .login-logo {
+                font-size: 1.5rem;
+            }
+
+            .login-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .form-group input {
+                padding: 0.6rem;
+                font-size: 14px;
+                border-radius: 8px;
+            }
+
+            .login-btn {
+                padding: 0.7rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <div class="login-logo">IntegraMente</div>
+                    <h2 class="login-subtitle">Acesso Empresarial</h2>
+                    <p class="login-description">
+                        Sistema exclusivo para empresas parceiras.<br>
+                        Entre com suas credenciais para acessar a plataforma.
+                    </p>
+                </div>
+
+                <div id="error-message" class="error-message">
+                    <strong>Erro de autenticação:</strong> <span id="error-text"></span>
+                </div>
+
+                <div id="success-message" class="success-message">
+                    <strong>Login realizado com sucesso!</strong> Redirecionando...
+                </div>
+
+                <form id="login-form" class="login-form">
+                    <div class="form-group">
+                        <label for="matricula">Matrícula</label>
+                        <input
+                            type="text"
+                            id="matricula"
+                            name="matricula"
+                            placeholder="Digite sua matrícula"
+                            required
+                            maxlength="20"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senha">Senha</label>
+                        <input
+                            type="password"
+                            id="senha"
+                            name="senha"
+                            placeholder="Digite sua senha"
+                            required
+                            maxlength="50"
+                        >
+                    </div>
+
+                    <button type="submit" id="login-btn" class="login-btn">
+                        Entrar no Sistema
+                    </button>
+                </form>
+
+                <div class="login-footer">
+                    <p>Problemas para acessar?</p>
+                    <a href="contato.html" class="support-link">Entre em contato com o suporte</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sistema de autenticação empresarial
+        class AuthSystem {
+            constructor() {
+                this.users = this.loadUsers();
+                this.init();
+            }
+
+            // Carregar usuários (simulado - em produção viria do servidor)
+            loadUsers() {
+                return {
+                    // Empresas parceiras com matrículas
+                    "EMP001": { senha: "integra2024", empresa: "TechCorp", nome: "João Silva" },
+                    "EMP002": { senha: "mente2024", empresa: "InovaSoft", nome: "Maria Santos" },
+                    "EMP003": { senha: "saude2024", empresa: "HealthTech", nome: "Pedro Costa" },
+                    "EMP004": { senha: "bemestar2024", empresa: "Wellness Corp", nome: "Ana Oliveira" },
+                    "EMP005": { senha: "equilibrio2024", empresa: "Balance Ltda", nome: "Carlos Mendes" },
+
+                    // Exemplos adicionais
+                    "ADMIN001": { senha: "admin2024", empresa: "IntegraMente", nome: "Administrador", admin: true },
+                    "SUP001": { senha: "suporte2024", empresa: "IntegraMente", nome: "Suporte", suporte: true }
+                };
+            }
+
+            init() {
+                const form = document.getElementById('login-form');
+                const loginBtn = document.getElementById('login-btn');
+
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.handleLogin();
+                });
+
+                // Validação em tempo real
+                document.getElementById('matricula').addEventListener('input', (e) => {
+                    e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+                });
+            }
+
+            async handleLogin() {
+                const matricula = document.getElementById('matricula').value.trim().toUpperCase();
+                const senha = document.getElementById('senha').value;
+
+                // Limpar mensagens anteriores
+                this.hideMessages();
+
+                // Validação básica
+                if (!matricula || !senha) {
+                    this.showError('Por favor, preencha matrícula e senha.');
+                    return;
+                }
+
+                if (matricula.length < 3) {
+                    this.showError('Matrícula deve ter pelo menos 3 caracteres.');
+                    return;
+                }
+
+                if (senha.length < 6) {
+                    this.showError('Senha deve ter pelo menos 6 caracteres.');
+                    return;
+                }
+
+                // Mostrar loading
+                this.setLoading(true);
+
+                try {
+                    // Simular delay de autenticação
+                    await this.delay(1500);
+
+                    // Verificar credenciais
+                    const user = this.users[matricula];
+
+                    if (!user) {
+                        throw new Error('Matrícula não encontrada no sistema.');
+                    }
+
+                    if (user.senha !== senha) {
+                        throw new Error('Senha incorreta.');
+                    }
+
+                    // Login bem-sucedido
+                    this.showSuccess();
+                    this.saveSession(user, matricula);
+
+                    // Redirecionar após 2 segundos
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 2000);
+
+                } catch (error) {
+                    this.showError(error.message);
+                } finally {
+                    this.setLoading(false);
+                }
+            }
+
+            setLoading(loading) {
+                const btn = document.getElementById('login-btn');
+                const inputs = document.querySelectorAll('input');
+
+                if (loading) {
+                    btn.disabled = true;
+                    btn.innerHTML = '<span class="loading-spinner"></span>Verificando...';
+                    inputs.forEach(input => input.disabled = true);
+                } else {
+                    btn.disabled = false;
+                    btn.innerHTML = 'Entrar no Sistema';
+                    inputs.forEach(input => input.disabled = false);
+                }
+            }
+
+            showError(message) {
+                const errorDiv = document.getElementById('error-message');
+                const errorText = document.getElementById('error-text');
+                errorText.textContent = message;
+                errorDiv.style.display = 'block';
+            }
+
+            showSuccess() {
+                const successDiv = document.getElementById('success-message');
+                successDiv.style.display = 'block';
+            }
+
+            hideMessages() {
+                document.getElementById('error-message').style.display = 'none';
+                document.getElementById('success-message').style.display = 'none';
+            }
+
+            saveSession(user, matricula) {
+                const session = {
+                    matricula: matricula,
+                    nome: user.nome,
+                    empresa: user.empresa,
+                    loginTime: new Date().toISOString(),
+                    admin: user.admin || false,
+                    suporte: user.suporte || false
+                };
+
+                localStorage.setItem('integraMente_session', JSON.stringify(session));
+                console.log('Sessão salva:', session);
+            }
+
+            delay(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+        }
+
+        // Inicializar sistema de autenticação quando DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Sistema de autenticação IntegraMente inicializado');
+            new AuthSystem();
+        });
+
+        // Verificar se já está logado
+        window.addEventListener('load', () => {
+            const session = localStorage.getItem('integraMente_session');
+            if (session) {
+                try {
+                    const userData = JSON.parse(session);
+                    const loginTime = new Date(userData.loginTime);
+                    const now = new Date();
+                    const hoursDiff = (now - loginTime) / (1000 * 60 * 60);
+
+                    // Sessão válida por 8 horas
+                    if (hoursDiff < 8) {
+                        console.log('Usuário já logado:', userData.nome);
+                        // Redirecionar automaticamente se já estiver logado
+                        // window.location.href = 'index.html';
+                    } else {
+                        localStorage.removeItem('integraMente_session');
+                    }
+                } catch (e) {
+                    localStorage.removeItem('integraMente_session');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

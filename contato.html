@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - IntegraMente</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"> IntegraMente </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="recursos.html">Recursos</a></li>
+                <li><a href="contato.html" class="active">Contato</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Página Banner -->
+    <section class="page-banner">
+        <h1>Entre em Contato</h1>
+        <p>Estamos aqui para ajudar você</p>
+    </section>
+
+    <!-- Contato -->
+    <section class="contact-section">
+        <div class="contact-info">
+            <h2>Informações de Contato</h2>
+            
+            <div class="info-item">
+                <h4>📞 Telefone</h4>
+                <p>(11) 9999-9999</p>
+                <p>Segunda a Sexta, 9h às 18h</p>
+            </div>
+
+            <div class="info-item">
+                <h4>📧 Email</h4>
+                <p>contato@integramente.com</p>
+                <p>Respondemos em até 24h</p>
+            </div>
+
+            <div class="info-item">
+                <h4>📍 Endereço</h4>
+                <p>Av. Paulista, 1000</p>
+                <p>São Paulo, SP - Brasil</p>
+            </div>
+
+            <div class="info-item">
+                <h4>🕐 Horário de Atendimento</h4>
+                <p>Seg-Sex: 9h às 18h</p>
+                <p>Sábado: 10h às 14h</p>
+                <p>Domingos e feriados: Fechado</p>
+            </div>
+
+            <div class="social-links">
+                <h4>Redes Sociais</h4>
+                <div class="socials">
+                    <a href="#" class="social-btn">Facebook</a>
+                    <a href="#" class="social-btn">Instagram</a>
+                    <a href="#" class="social-btn">LinkedIn</a>
+                    <a href="#" class="social-btn">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>Envie-nos uma Mensagem</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Telefone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Assunto</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Selecione um assunto</option>
+                        <option value="consulta">Consulta</option>
+                        <option value="informacao">Informação Geral</option>
+                        <option value="feedback">Feedback</option>
+                        <option value="problema">Relatar Problema</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Mapa -->
+    <section class="map-section">
+        <h2>Localização</h2>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.0089649876!2d-46.6568!3d-23.5505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0edf63%3A0xf2e8f1f8c8e8c8e8!2sAv.%20Paulista%2C%201000%20-%20S%C3%A3o%20Paulo!5e0!3m2!1spt-BR!2sbr!4v1234567890" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- Suporte Imediato -->
+    <section class="support-section">
+        <h2>Precisa de Ajuda Imediata?</h2>
+        <p>Se você está passando por uma crise, entre em contato conosco ou com os serviços de emergência.</p>
+        <div class="support-cards">
+            <div class="support-card">
+                <h3>📞 CVV - Prevenção ao Suicídio</h3>
+                <p>Disponível 24/7</p>
+                <a href="tel:188" class="btn btn-primary">Ligar: 188</a>
+            </div>
+            <div class="support-card">
+                <h3>🚑 Emergência Médica</h3>
+                <p>Emergência geral</p>
+                <a href="tel:192" class="btn btn-primary">Ligar: 192</a>
+            </div>
+            <div class="support-card">
+                <h3>💬 Chat de Suporte</h3>
+                <p>Resposta em tempo real</p>
+                <button class="btn btn-primary">Iniciar Chat</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>IntegraMente</h4>
+                <p>Cuidando da sua saúde mental todos os dias</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contato</h4>
+                <p>Email: contato@integramente.com</p>
+                <p>Tel: (11) 9999-9999</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 IntegraMente. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sistema de verificação de autenticação
+        class AuthGuard {
+            constructor() {
+                this.checkAuthentication();
+            }
+
+            checkAuthentication() {
+                const session = localStorage.getItem('integraMente_session');
+
+                if (!session) {
+                    console.log('Usuário não autenticado. Redirecionando para login...');
+                    this.redirectToLogin();
+                    return;
+                }
+
+                try {
+                    const userData = JSON.parse(session);
+                    const loginTime = new Date(userData.loginTime);
+                    const now = new Date();
+                    const hoursDiff = (now - loginTime) / (1000 * 60 * 60);
+
+                    // Sessão válida por 8 horas
+                    if (hoursDiff >= 8) {
+                        console.log('Sessão expirada. Redirecionando para login...');
+                        localStorage.removeItem('integraMente_session');
+                        this.redirectToLogin();
+                        return;
+                    }
+
+                    console.log('Usuário autenticado:', userData.nome, '- Empresa:', userData.empresa);
+                    this.showUserInfo(userData);
+
+                } catch (error) {
+                    console.error('Erro ao verificar sessão:', error);
+                    localStorage.removeItem('integraMente_session');
+                    this.redirectToLogin();
+                }
+            }
+
+            redirectToLogin() {
+                // Salvar página atual para redirecionamento após login
+                sessionStorage.setItem('redirectAfterLogin', window.location.pathname);
+                window.location.href = 'login.html';
+            }
+
+            showUserInfo(userData) {
+                // Adicionar informações do usuário na navbar
+                const navbar = document.querySelector('.navbar');
+                if (navbar) {
+                    const userInfo = document.createElement('div');
+                    userInfo.className = 'user-info';
+                    userInfo.innerHTML = `
+                        <span class="user-name">${userData.nome}</span>
+                        <span class="user-company">${userData.empresa}</span>
+                        <button class="logout-btn" onclick="logout()">Sair</button>
+                    `;
+                    navbar.appendChild(userInfo);
+                }
+            }
+        }
+
+        // Função global de logout
+        function logout() {
+            if (confirm('Tem certeza que deseja sair do sistema?')) {
+                localStorage.removeItem('integraMente_session');
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Verificar redirecionamento após login
+        window.addEventListener('load', () => {
+            const redirectPath = sessionStorage.getItem('redirectAfterLogin');
+            if (redirectPath) {
+                sessionStorage.removeItem('redirectAfterLogin');
+            }
+        });
+
+        // Inicializar verificação de autenticação
+        document.addEventListener('DOMContentLoaded', () => {
+            new AuthGuard();
+        });
+    </script>
+
+    <script src="js/carousel.js"></script>
+</body>
+</html>

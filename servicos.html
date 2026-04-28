@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços - IntegraMente</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"> IntegraMente </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="servicos.html" class="active">Serviços</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="recursos.html">Recursos</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Página Banner -->
+    <section class="page-banner">
+        <h1>Nossos Serviços</h1>
+        <p>Conheça todas as opções disponíveis para sua saúde mental</p>
+    </section>
+
+    <!-- Serviços Detalhados -->
+<section class="services-detailed">
+    <div class="service-detail-item">
+        <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=500&h=400&fit=crop" alt="Saúde Mental no Trabalho">
+        </div>
+        <div class="service-info">
+            <h2>Saúde Mental no Trabalho</h2>
+            <p>Programas estruturados para promover um ambiente organizacional mais saudável, prevenindo o adoecimento emocional e fortalecendo as equipes.</p>
+            <ul>
+                <li>✓ Diagnóstico organizacional</li>
+                <li>✓ Ações preventivas e educativas</li>
+                <li>✓ Suporte a lideranças</li>
+                <li>✓ Cultura de cuidado contínuo</li>
+            </ul>
+            <button class="btn btn-primary" onclick="openModal('modal-saude-trabalho')">Saiba Mais</button>
+        </div>
+    </div>
+
+    <div class="service-detail-item reverse">
+        <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=500&h=400&fit=crop" alt="Conteúdos Educativos">
+        </div>
+        <div class="service-info">
+            <h2>Conteúdos Informativos e Educativos</h2>
+            <p>Materiais de qualidade sobre saúde mental, autocuidado e bem-estar, produzidos por especialistas e acessíveis a qualquer momento.</p>
+            <ul>
+                <li>✓ Artigos e e-books especializados</li>
+                <li>✓ Vídeos e podcasts</li>
+                <li>✓ Linguagem acessível</li>
+                <li>✓ Atualização frequente</li>
+            </ul>
+            <button class="btn btn-primary" onclick="openModal('modal-conteudos')">Explorar Conteúdos</button>
+        </div>
+    </div>
+
+    <div class="service-detail-item">
+        <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=500&h=400&fit=crop" alt="Produtividade com Equilíbrio">
+        </div>
+        <div class="service-info">
+            <h2>Produtividade com Equilíbrio</h2>
+            <p>Metodologias e práticas que unem alta performance e qualidade de vida, ajudando profissionais a render mais sem abrir mão do bem-estar.</p>
+            <ul>
+                <li>✓ Técnicas de gestão de tempo</li>
+                <li>✓ Prevenção ao burnout</li>
+                <li>✓ Equilíbrio entre vida pessoal e profissional</li>
+                <li>✓ Metas saudáveis e alcançáveis</li>
+            </ul>
+            <button class="btn btn-primary" onclick="openModal('modal-produtividade')">Conhecer Metodologia</button>
+        </div>
+    </div>
+
+    <div class="service-detail-item reverse">
+        <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=500&h=400&fit=crop" alt="Bem-estar Emocional">
+        </div>
+        <div class="service-info">
+            <h2>Apoio ao Bem-estar Emocional</h2>
+            <p>Suporte especializado para o cuidado das emoções no dia a dia, com recursos que promovem autoconhecimento, resiliência e equilíbrio interior.</p>
+            <ul>
+                <li>✓ Acolhimento individualizado</li>
+                <li>✓ Ferramentas de autorregulação</li>
+                <li>✓ Acompanhamento contínuo</li>
+                <li>✓ Ambiente seguro e empático</li>
+            </ul>
+            <button class="btn btn-primary" onclick="openModal('modal-bemestar')">Quero Apoio</button>
+        </div>
+    </div>
+
+    <div class="service-detail-item">
+        <div class="service-image">
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&h=400&fit=crop" alt="Plataforma Digital">
+        </div>
+        <div class="service-info">
+            <h2>Plataforma Digital</h2>
+            <p>Ambiente virtual completo com orientações práticas, trilhas de desenvolvimento e recursos de saúde mental acessíveis de qualquer lugar.</p>
+            <ul>
+                <li>✓ Acesso pelo celular ou computador</li>
+                <li>✓ Trilhas personalizadas</li>
+                <li>✓ Notificações e lembretes de cuidado</li>
+                <li>✓ Integração com outros serviços</li>
+            </ul>
+            <button class="btn btn-primary" onclick="openModal('modal-plataforma')">Acessar Plataforma</button>
+        </div>
+    </div>
+</section>
+
+    <!-- Modais de Inscrição -->
+
+    <!-- Modal Saúde Mental no Trabalho -->
+    <div id="modal-saude-trabalho" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-saude-trabalho')">&times;</span>
+            <h2>Saúde Mental no Trabalho</h2>
+            <form class="form-inscricao">
+                <div class="form-group">
+                    <label for="nome-trabalho">Nome Completo</label>
+                    <input type="text" id="nome-trabalho" required>
+                </div>
+                <div class="form-group">
+                    <label for="email-trabalho">Email</label>
+                    <input type="email" id="email-trabalho" required>
+                </div>
+                <div class="form-group">
+                    <label for="empresa-trabalho">Nome da Empresa</label>
+                    <input type="text" id="empresa-trabalho" required>
+                </div>
+                <div class="form-group">
+                    <label for="cargo-trabalho">Cargo/Função</label>
+                    <input type="text" id="cargo-trabalho" required>
+                </div>
+                <div class="form-group">
+                    <label for="interesse-trabalho">Tipo de Serviço</label>
+                    <select id="interesse-trabalho" required>
+                        <option value="">Selecione uma opção</option>
+                        <option value="diagnostico">Diagnóstico Organizacional</option>
+                        <option value="prevencao">Ações Preventivas e Educativas</option>
+                        <option value="lideranca">Suporte a Lideranças</option>
+                        <option value="cultura">Cultura de Cuidado Contínuo</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Solicitar Informações</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Conteúdos Informativos -->
+    <div id="modal-conteudos" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-conteudos')">&times;</span>
+            <h2>Conteúdos Informativos e Educativos</h2>
+            <form class="form-inscricao">
+                <div class="form-group">
+                    <label for="nome-conteudos">Nome Completo</label>
+                    <input type="text" id="nome-conteudos" required>
+                </div>
+                <div class="form-group">
+                    <label for="email-conteudos">Email</label>
+                    <input type="email" id="email-conteudos" required>
+                </div>
+                <div class="form-group">
+                    <label for="interesse-conteudo">Temas de Interesse</label>
+                    <select id="interesse-conteudo" required>
+                        <option value="">Selecione um tema</option>
+                        <option value="artigos">Artigos e E-books</option>
+                        <option value="videos">Vídeos</option>
+                        <option value="podcasts">Podcasts</option>
+                        <option value="todos">Todos os Conteúdos</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="frequencia-conteudo">Frequência de Envios</label>
+                    <select id="frequencia-conteudo" required>
+                        <option value="">Selecione</option>
+                        <option value="semanal">Semanal</option>
+                        <option value="quinzenal">Quinzenal</option>
+                        <option value="mensal">Mensal</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Inscrever-se</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Produtividade com Equilíbrio -->
+    <div id="modal-produtividade" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-produtividade')">&times;</span>
+            <h2>Produtividade com Equilíbrio</h2>
+            <form class="form-inscricao">
+                <div class="form-group">
+                    <label for="nome-produtividade">Nome Completo</label>
+                    <input type="text" id="nome-produtividade" required>
+                </div>
+                <div class="form-group">
+                    <label for="email-produtividade">Email</label>
+                    <input type="email" id="email-produtividade" required>
+                </div>
+                <div class="form-group">
+                    <label for="profissao-produtividade">Profissão/Área</label>
+                    <input type="text" id="profissao-produtividade" required>
+                </div>
+                <div class="form-group">
+                    <label for="desafio-produtividade">Principal Desafio</label>
+                    <select id="desafio-produtividade" required>
+                        <option value="">Selecione</option>
+                        <option value="tempo">Gestão de Tempo</option>
+                        <option value="burnout">Prevenção ao Burnout</option>
+                        <option value="equilíbrio">Equilíbrio Vida/Trabalho</option>
+                        <option value="metas">Estabelecer Metas Saudáveis</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Conhecer Programa</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Bem-estar Emocional -->
+    <div id="modal-bemestar" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-bemestar')">&times;</span>
+            <h2>Apoio ao Bem-estar Emocional</h2>
+            <form class="form-inscricao">
+                <div class="form-group">
+                    <label for="nome-bemestar">Nome Completo</label>
+                    <input type="text" id="nome-bemestar" required>
+                </div>
+                <div class="form-group">
+                    <label for="email-bemestar">Email</label>
+                    <input type="email" id="email-bemestar" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone-bemestar">Telefone</label>
+                    <input type="tel" id="telefone-bemestar" required>
+                </div>
+                <div class="form-group">
+                    <label for="necessidade-bemestar">Sua Necessidade Principal</label>
+                    <textarea id="necessidade-bemestar" rows="3" placeholder="Descreva brevemente sua necessidade" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Solicitar Acompanhamento</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Plataforma Digital -->
+    <div id="modal-plataforma" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-plataforma')">&times;</span>
+            <h2>Plataforma Digital</h2>
+            <form class="form-inscricao">
+                <div class="form-group">
+                    <label for="nome-plataforma">Nome Completo</label>
+                    <input type="text" id="nome-plataforma" required>
+                </div>
+                <div class="form-group">
+                    <label for="email-plataforma">Email</label>
+                    <input type="email" id="email-plataforma" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone-plataforma">Telefone</label>
+                    <input type="tel" id="telefone-plataforma" required>
+                </div>
+                <div class="form-group">
+                    <label for="dispositivo-plataforma">Dispositivo Principal</label>
+                    <select id="dispositivo-plataforma" required>
+                        <option value="">Selecione</option>
+                        <option value="celular">Celular</option>
+                        <option value="computador">Computador</option>
+                        <option value="ambos">Ambos</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Acessar Plataforma</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Consultas Online -->
+    <div id="modal-consulta" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-consulta')">&times;</span>
+            <h2>Agendar Consulta Online</h2>
+            <form class="form-inscricao">
+                <div class="form-group">
+                    <label for="nome-consulta">Nome Completo</label>
+                    <input type="text" id="nome-consulta" required>
+                </div>
+                <div class="form-group">
+                    <label for="email-consulta">Email</label>
+                    <input type="email" id="email-consulta" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone-consulta">Telefone</label>
+                    <input type="tel" id="telefone-consulta" required>
+                </div>
+                <div class="form-group">
+                    <label for="horario-consulta">Horário Preferido</label>
+                    <select id="horario-consulta" required>
+                        <option value="">Selecione um horário</option>
+                        <option value="manha">Manhã (8h - 12h)</option>
+                        <option value="tarde">Tarde (12h - 18h)</option>
+                        <option value="noite">Noite (18h - 21h)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="descricao-consulta">Breve descrição do motivo (opcional)</label>
+                    <textarea id="descricao-consulta" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Confirmar Agendamento</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Meditação -->
+    <div id="modal-meditacao" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-meditacao')">&times;</span>
+            <h2>Inscrever-se em Programas de Meditação</h2>
+            <form class="form-inscricao">
+                <div class="form-group">
+                    <label for="nome-meditacao">Nome Completo</label>
+                    <input type="text" id="nome-meditacao" required>
+                </div>
+                <div class="form-group">
+                    <label for="email-meditacao">Email</label>
+                    <input type="email" id="email-meditacao" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone-meditacao">Telefone</label>
+                    <input type="tel" id="telefone-meditacao" required>
+                </div>
+                <div class="form-group">
+                    <label for="nivel-meditacao">Nível de Experiência</label>
+                    <select id="nivel-meditacao" required>
+                        <option value="">Selecione seu nível</option>
+                        <option value="iniciante">Iniciante</option>
+                        <option value="intermediario">Intermediário</option>
+                        <option value="avancado">Avançado</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="aula-meditacao">Prefere aulas ao vivo ou gravadas?</label>
+                    <select id="aula-meditacao" required>
+                        <option value="">Selecione uma opção</option>
+                        <option value="ao-vivo">Ao vivo</option>
+                        <option value="gravadas">Gravadas</option>
+                        <option value="ambas">Ambas</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Inscrever-se Agora</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Terapia em Grupo -->
+    <div id="modal-grupo" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-grupo')">&times;</span>
+            <h2>Inscrever-se em Terapia em Grupo</h2>
+            <form class="form-inscricao">
+                <div class="form-group">
+                    <label for="nome-grupo">Nome Completo</label>
+                    <input type="text" id="nome-grupo" required>
+                </div>
+                <div class="form-group">
+                    <label for="email-grupo">Email</label>
+                    <input type="email" id="email-grupo" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone-grupo">Telefone</label>
+                    <input type="tel" id="telefone-grupo" required>
+                </div>
+                <div class="form-group">
+                    <label for="tema-grupo">Tema de Interesse</label>
+                    <select id="tema-grupo" required>
+                        <option value="">Selecione um tema</option>
+                        <option value="ansiedade">Ansiedade</option>
+                        <option value="depressao">Depressão</option>
+                        <option value="relacionamentos">Relacionamentos</option>
+                        <option value="autoestima">Autoestima</option>
+                        <option value="estresse">Gerenciamento de Estresse</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Inscrever-se</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Cursos Online -->
+    <div id="modal-cursos" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-cursos')">&times;</span>
+            <h2>Inscrever-se em Cursos Online</h2>
+            <form class="form-inscricao">
+                <div class="form-group">
+                    <label for="nome-cursos">Nome Completo</label>
+                    <input type="text" id="nome-cursos" required>
+                </div>
+                <div class="form-group">
+                    <label for="email-cursos">Email</label>
+                    <input type="email" id="email-cursos" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone-cursos">Telefone</label>
+                    <input type="tel" id="telefone-cursos" required>
+                </div>
+                <div class="form-group">
+                    <label for="curso-interesse">Curso de Interesse</label>
+                    <select id="curso-interesse" required>
+                        <option value="">Selecione um curso</option>
+                        <option value="gestao-emocoes">Gestão de Emoções</option>
+                        <option value="relacionamentos">Relacionamentos Saudáveis</option>
+                        <option value="desenvolvimento">Desenvolvimento Pessoal</option>
+                        <option value="assertividade">Comunicação Assertiva</option>
+                        <option value="inteligencia">Inteligência Emocional</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Inscrever-se no Curso</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Coaching -->
+    <div id="modal-coaching" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('modal-coaching')">&times;</span>
+            <h2>Agendar Sessão de Coaching</h2>
+            <form class="form-inscricao">
+                <div class="form-group">
+                    <label for="nome-coaching">Nome Completo</label>
+                    <input type="text" id="nome-coaching" required>
+                </div>
+                <div class="form-group">
+                    <label for="email-coaching">Email</label>
+                    <input type="email" id="email-coaching" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone-coaching">Telefone</label>
+                    <input type="tel" id="telefone-coaching" required>
+                </div>
+                <div class="form-group">
+                    <label for="objetivos-coaching">Seus Objetivos Principais</label>
+                    <textarea id="objetivos-coaching" rows="4" placeholder="Descreva seus objetivos para o coaching" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="experiencia-coaching">Já participou de coaching antes?</label>
+                    <select id="experiencia-coaching" required>
+                        <option value="">Selecione</option>
+                        <option value="nao">Não</option>
+                        <option value="sim">Sim</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Agendar Sessão</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>IntegraMente</h4>
+                <p>Cuidando da sua saúde mental todos os dias</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contato</h4>
+                <p>Email: contato@integramente.com</p>
+                <p>Tel: (11) 9999-9999</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 IntegraMente. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sistema de verificação de autenticação
+        class AuthGuard {
+            constructor() {
+                this.checkAuthentication();
+            }
+
+            checkAuthentication() {
+                const session = localStorage.getItem('integraMente_session');
+
+                if (!session) {
+                    console.log('Usuário não autenticado. Redirecionando para login...');
+                    this.redirectToLogin();
+                    return;
+                }
+
+                try {
+                    const userData = JSON.parse(session);
+                    const loginTime = new Date(userData.loginTime);
+                    const now = new Date();
+                    const hoursDiff = (now - loginTime) / (1000 * 60 * 60);
+
+                    // Sessão válida por 8 horas
+                    if (hoursDiff >= 8) {
+                        console.log('Sessão expirada. Redirecionando para login...');
+                        localStorage.removeItem('integraMente_session');
+                        this.redirectToLogin();
+                        return;
+                    }
+
+                    console.log('Usuário autenticado:', userData.nome, '- Empresa:', userData.empresa);
+                    this.showUserInfo(userData);
+
+                } catch (error) {
+                    console.error('Erro ao verificar sessão:', error);
+                    localStorage.removeItem('integraMente_session');
+                    this.redirectToLogin();
+                }
+            }
+
+            redirectToLogin() {
+                // Salvar página atual para redirecionamento após login
+                sessionStorage.setItem('redirectAfterLogin', window.location.pathname);
+                window.location.href = 'login.html';
+            }
+
+            showUserInfo(userData) {
+                // Adicionar informações do usuário na navbar
+                const navbar = document.querySelector('.navbar');
+                if (navbar) {
+                    const userInfo = document.createElement('div');
+                    userInfo.className = 'user-info';
+                    userInfo.innerHTML = `
+                        <span class="user-name">${userData.nome}</span>
+                        <span class="user-company">${userData.empresa}</span>
+                        <button class="logout-btn" onclick="logout()">Sair</button>
+                    `;
+                    navbar.appendChild(userInfo);
+                }
+            }
+        }
+
+        // Função global de logout
+        function logout() {
+            if (confirm('Tem certeza que deseja sair do sistema?')) {
+                localStorage.removeItem('integraMente_session');
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Verificar redirecionamento após login
+        window.addEventListener('load', () => {
+            const redirectPath = sessionStorage.getItem('redirectAfterLogin');
+            if (redirectPath) {
+                sessionStorage.removeItem('redirectAfterLogin');
+            }
+        });
+
+        // Inicializar verificação de autenticação
+        document.addEventListener('DOMContentLoaded', () => {
+            new AuthGuard();
+        });
+    </script>
+
+    <script src="js/carousel.js"></script>
+    <script src="js/services-modal.js"></script>
+</body>
+</html>

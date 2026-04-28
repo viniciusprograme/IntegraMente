@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Integra Mente - Saúde Mental em Primeiro Lugar</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"> Integra Mente </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="recursos.html">Recursos</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carousel -->
+    <section class="carousel-section">
+        <div class="carousel">
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=500&fit=crop" alt="Bem-estar mental">
+                <div class="carousel-text">
+                    <h2>Cuide da sua Saúde Mental</h2>
+                    <p>Você não está sozinho nesta jornada</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1200&h=500&fit=crop" alt="Terapia">
+                <div class="carousel-text">
+                    <h2>Terapeutas Profissionais</h2>
+                    <p>Especialistas prontos para ajudar você</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1200&h=500&fit=crop" alt="Meditação">
+                <div class="carousel-text">
+                    <h2>Técnicas de Relaxamento</h2>
+                    <p>Encontre paz e equilíbrio emocional</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&h=500&fit=crop" alt="Comunidade">
+                <div class="carousel-text">
+                    <h2>Comunidade de Apoio</h2>
+                    <p>Conecte-se com outras pessoas</p>
+                </div>
+            </div>
+        </div>
+        
+        <button class="carousel-btn prev" onclick="changeSlide(-1)">❮</button>
+        <button class="carousel-btn next" onclick="changeSlide(1)">❯</button>
+        
+        <div class="carousel-dots">
+            <span class="dot" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </section>
+
+    <!-- Seção Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Sua Saúde Mental Importa</h1>
+            <p>Oferecemos suporte completo para seu bem-estar emocional e psicológico</p>
+            <button class="btn btn-primary">Comece Agora</button>
+        </div>
+    </section>
+
+    <!-- Seção de Serviços Destaque -->
+    <section class="services-preview">
+        <h2>Nossos Serviços</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon">🏢</div>
+                <h3>Saúde Mental no Trabalho</h3>
+                <p>Programas para promover bem-estar e prevenir o adoecimento emocional nas equipes</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">📚</div>
+                <h3>Conteúdos Educativos</h3>
+                <p>Artigos, vídeos e materiais especializados sobre saúde mental e autocuidado</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">⚡</div>
+                <h3>Produtividade com Equilíbrio</h3>
+                <p>Metodologias que unem alta performance e qualidade de vida no trabalho</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">💚</div>
+                <h3>Bem-estar Emocional</h3>
+                <p>Suporte e ferramentas para o cuidado das emoções no dia a dia</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">📱</div>
+                <h3>Plataforma Digital</h3>
+                <p>Orientações práticas e recursos de saúde mental acessíveis de qualquer lugar</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testemunhos -->
+    <section class="testimonials">
+        <h2>O que Nossos Clientes Dizem</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p>"Transformou minha vida. Finalmente consigo lidar com minha ansiedade!"</p>
+                <strong>- Maria S.</strong>
+            </div>
+            <div class="testimonial-card">
+                <p>"Os profissionais são incríveis e o atendimento é muito acolhedor."</p>
+                <strong>- João P.</strong>
+            </div>
+            <div class="testimonial-card">
+                <p>"Recomendo para todo mundo. Vale cada centavo investido."</p>
+                <strong>- Ana L.</strong>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>IntegraMente</h4>
+                <p>Cuidando da sua saúde mental todos os dias</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contato</h4>
+                <p>Email: contato@integramente.com</p>
+                <p>Tel: (11) 9999-9999</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 IntegraMente. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sistema de verificação de autenticação
+        class AuthGuard {
+            constructor() {
+                this.checkAuthentication();
+            }
+
+            checkAuthentication() {
+                const session = localStorage.getItem('integraMente_session');
+
+                if (!session) {
+                    console.log('Usuário não autenticado. Redirecionando para login...');
+                    this.redirectToLogin();
+                    return;
+                }
+
+                try {
+                    const userData = JSON.parse(session);
+                    const loginTime = new Date(userData.loginTime);
+                    const now = new Date();
+                    const hoursDiff = (now - loginTime) / (1000 * 60 * 60);
+
+                    // Sessão válida por 8 horas
+                    if (hoursDiff >= 8) {
+                        console.log('Sessão expirada. Redirecionando para login...');
+                        localStorage.removeItem('integraMente_session');
+                        this.redirectToLogin();
+                        return;
+                    }
+
+                    console.log('Usuário autenticado:', userData.nome, '- Empresa:', userData.empresa);
+                    this.showUserInfo(userData);
+
+                } catch (error) {
+                    console.error('Erro ao verificar sessão:', error);
+                    localStorage.removeItem('integraMente_session');
+                    this.redirectToLogin();
+                }
+            }
+
+            redirectToLogin() {
+                // Salvar página atual para redirecionamento após login
+                sessionStorage.setItem('redirectAfterLogin', window.location.pathname);
+                window.location.href = 'login.html';
+            }
+
+            showUserInfo(userData) {
+                // Adicionar informações do usuário na navbar
+                const navbar = document.querySelector('.navbar');
+                if (navbar) {
+                    const userInfo = document.createElement('div');
+                    userInfo.className = 'user-info';
+                    userInfo.innerHTML = `
+                        <span class="user-name">${userData.nome}</span>
+                        <span class="user-company">${userData.empresa}</span>
+                        <button class="logout-btn" onclick="logout()">Sair</button>
+                    `;
+                    navbar.appendChild(userInfo);
+                }
+            }
+        }
+
+        // Função global de logout
+        function logout() {
+            if (confirm('Tem certeza que deseja sair do sistema?')) {
+                localStorage.removeItem('integraMente_session');
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Verificar redirecionamento após login
+        window.addEventListener('load', () => {
+            const redirectPath = sessionStorage.getItem('redirectAfterLogin');
+            if (redirectPath) {
+                sessionStorage.removeItem('redirectAfterLogin');
+            }
+        });
+
+        // Inicializar verificação de autenticação
+        document.addEventListener('DOMContentLoaded', () => {
+            new AuthGuard();
+        });
+    </script>
+
+    <script src="js/carousel.js"></script>
+</body>
+</html>

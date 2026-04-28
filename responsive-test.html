@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Teste de Responsividade - IntegraMente</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #46286d, #6382c4);
+            color: #02273b;
+            padding: 1rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #46286d;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: clamp(1.5rem, 5vw, 3rem);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #46286d, #6382c4);
+            color: white;
+            padding: clamp(1rem, 5vw, 2rem);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .card h2 {
+            font-size: clamp(1.1rem, 4vw, 1.5rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            opacity: 0.9;
+        }
+
+        .breakpoint {
+            background: #ebe2ed;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #46286d;
+            border-radius: 5px;
+        }
+
+        .breakpoint h3 {
+            color: #46286d;
+            font-size: clamp(0.95rem, 3vw, 1.2rem);
+        }
+
+        .breakpoint p {
+            font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+            color: #555;
+            margin-top: 0.5rem;
+        }
+
+        .device-info {
+            background: #f0f0f0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            caption-side: top;
+        }
+
+        .device-info h2 {
+            color: #46286d;
+            font-size: clamp(1rem, 4vw, 1.4rem);
+            margin-bottom: 1rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .info-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #ddd;
+        }
+
+        .info-item label {
+            display: block;
+            font-weight: 600;
+            color: #46286d;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-item span {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            color: #6382c4;
+            font-weight: bold;
+        }
+
+        @media (max-width: 1199px) {
+            .container {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .container {
+                padding: 1rem;
+                border-radius: 12px;
+            }
+
+            body {
+                padding: 0.5rem;
+            }
+        }
+
+        @media (max-width: 479px) {
+            .container {
+                padding: 0.8rem;
+                border-radius: 10px;
+            }
+
+            .grid {
+                gap: 1rem;
+            }
+
+            .card {
+                padding: clamp(0.8rem, 4vw, 1.5rem);
+            }
+
+            .device-info {
+                padding: 1rem;
+            }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: white;
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Teste de Responsividade - IntegraMente</h1>
+
+        <div class="device-info">
+            <h2>📱 Informações do Dispositivo</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>Largura da Janela</label>
+                    <span id="width">0px</span>
+                </div>
+                <div class="info-item">
+                    <label>Altura da Janela</label>
+                    <span id="height">0px</span>
+                </div>
+                <div class="info-item">
+                    <label>DPR (Pixel Ratio)</label>
+                    <span id="dpr">1x</span>
+                </div>
+                <div class="info-item">
+                    <label>Tipo de Dispositivo</label>
+                    <span id="device">Desktop</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="color: #46286d; margin: 1.5rem 0 1rem 0; font-size: clamp(1.2rem, 4vw, 1.6rem);">📊 Breakpoints Responsivos</h2>
+
+        <div class="breakpoint">
+            <h3>📱 Extra Small (< 360px)</h3>
+            <p>Smartphones muito pequenos - Typography e padding otimizados para tela mínima</p>
+        </div>
+
+        <div class="breakpoint">
+            <h3>📱 Mobile (360px - 479px)</h3>
+            <p>Smartphones padrão - Menu hamburguer ativo, single column layout</p>
+        </div>
+
+        <div class="breakpoint">
+            <h3>📱 Tablet Portrait (480px - 767px)</h3>
+            <p>Tablets em pé - 2 colunas em alguns componentes, modais adaptados</p>
+        </div>
+
+        <div class="breakpoint">
+            <h3>📱 Tablet Landscape (768px - 1199px)</h3>
+            <p>Tablets deitados e notebooks - Grid com 2-3 colunas, navbar completa</p>
+        </div>
+
+        <div class="breakpoint">
+            <h3>💻 Desktop (1200px - 1919px)</h3>
+            <p>Computadores - Layout completo 3+ colunas, espaçamento máximo</p>
+        </div>
+
+        <div class="breakpoint">
+            <h3>💻 Extra Large (1920px+)</h3>
+            <p>Monitores grandes e 4K - Conteúdo centralizado com max-width</p>
+        </div>
+
+        <h2 style="color: #46286d; margin: 1.5rem 0 1rem 0; font-size: clamp(1.2rem, 4vw, 1.6rem);">✨ Recursos de Responsividade</h2>
+
+        <div class="grid">
+            <div class="card">
+                <h2>🔤 Tipografia Fluída</h2>
+                <p>Tamanhos de fonte escaláveis com clamp() para transições suaves</p>
+            </div>
+            <div class="card">
+                <h2>📐 Grid Adaptativo</h2>
+                <p>auto-fit e minmax() para reflow automático em qualquer tela</p>
+            </div>
+            <div class="card">
+                <h2>📱 Touch-Friendly</h2>
+                <p>Botões com mínimo 44px para facilitar cliques em mobile</p>
+            </div>
+            <div class="card">
+                <h2>🎯 Viewport Meta</h2>
+                <p>Configurado corretamente em todos os arquivos HTML</p>
+            </div>
+            <div class="card">
+                <h2>☰ Menu Adaptativo</h2>
+                <p>Hamburguer para mobile, menu completo em desktop</p>
+            </div>
+            <div class="card">
+                <h2>📸 Imagens Responsivas</h2>
+                <p>width: 100%, height: auto para escalar proporcionalmente</p>
+            </div>
+        </div>
+
+        <div style="background: #e8f5e9; padding: 1.5rem; border-radius: 10px; margin-top: 2rem; border-left: 4px solid #4caf50;">
+            <h3 style="color: #2e7d32; margin-bottom: 1rem; font-size: clamp(1rem, 4vw, 1.3rem);">✅ Como Testar Responsividade</h3>
+            <ol style="margin-left: 1.2rem; font-size: clamp(0.85rem, 3vw, 1rem); color: #333; line-height: 1.8;">
+                <li>Abra o navegador com F12 (DevTools)</li>
+                <li>Pressione Ctrl+Shift+M para ativar "Device Toolbar"</li>
+                <li>Alterne entre diferentes dispositivos (iPhone, Samsung, iPad, Desktop)</li>
+                <li>Redimensione manualmente a janela para ver transições suaves</li>
+                <li>Verifique que elementos se adaptam sem quebrar layout</li>
+                <li>Teste em múltiplos navegadores e dispositivos reais</li>
+            </ol>
+        </div>
+    </div>
+
+    <footer>
+        <p>🌐 Site responsivo IntegraMente © 2024 - Otimizado para todos os dispositivos</p>
+    </footer>
+
+    <script>
+        function updateDeviceInfo() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const dpr = window.devicePixelRatio || 1;
+
+            document.getElementById('width').textContent = width + 'px';
+            document.getElementById('height').textContent = height + 'px';
+            document.getElementById('dpr').textContent = dpr.toFixed(1) + 'x';
+
+            let deviceType = 'Desktop';
+            if (width < 360) {
+                deviceType = 'Extra Small Phone';
+            } else if (width < 480) {
+                deviceType = 'Mobile Phone';
+            } else if (width < 768) {
+                deviceType = 'Tablet Portrait';
+            } else if (width < 1200) {
+                deviceType = 'Tablet Landscape';
+            } else if (width < 1920) {
+                deviceType = 'Desktop';
+            } else {
+                deviceType = 'Extra Large Screen';
+            }
+
+            document.getElementById('device').textContent = deviceType;
+        }
+
+        // Atualizar ao carregar
+        window.addEventListener('DOMContentLoaded', updateDeviceInfo);
+
+        // Atualizar ao redimensionar
+        window.addEventListener('resize', updateDeviceInfo);
+
+        // Atualizar a cada 500ms durante transição de orientação
+        window.addEventListener('orientationchange', () => {
+            setTimeout(updateDeviceInfo, 500);
+        });
+    </script>
+</body>
+</html>
