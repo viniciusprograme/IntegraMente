@@ -14,12 +14,12 @@ Backend simples e leve para a plataforma IntegraMente de Saúde Mental. Utiliza 
 
 1. **Instalar dependências**
 ```bash
-cd backend
 npm install
 ```
 
 2. **Configurar variáveis de ambiente**
 ```bash
+cp .env.example .env
 # Editar o arquivo .env com suas configurações
 nano .env
 ```
@@ -85,6 +85,46 @@ Response (201):
 }
 ```
 
+#### Perfil do Usuário
+```
+GET /api/auth/me
+Authorization: Bearer {token}
+
+Response (200):
+{
+  "sucesso": true,
+  "usuario": {
+    "id": 1,
+    "matricula": "EMP001",
+    "nome": "João Silva",
+    "empresa": "TechCorp",
+    "email": "joao@empresa.com",
+    "telefone": "(11) 98765-4321",
+    "admin": false,
+    "ativo": 1,
+    "criado_em": "2024-04-25T08:00:00.000Z"
+  }
+}
+```
+
+#### Alterar Senha
+```
+PATCH /api/auth/alterar-senha
+Authorization: Bearer {token}
+Content-Type: application/json
+
+{
+  "senha_atual": "senha_antiga",
+  "senha_nova": "senha_nova_123"
+}
+
+Response (200):
+{
+  "sucesso": true,
+  "mensagem": "Senha alterada com sucesso"
+}
+```
+
 ### Inscrições / Formulários
 
 #### Criar Inscrição
@@ -135,6 +175,25 @@ Response (200):
 }
 ```
 
+#### Buscar Inscrição Específica
+```
+GET /api/inscricoes/{id}
+Authorization: Bearer {token}
+
+Response (200):
+{
+  "sucesso": true,
+  "inscricao": {
+    "id": 42,
+    "usuario_id": 1,
+    "tipo_servico": "Consulta Online",
+    "dados_formulario": { ... },
+    "status": "pendente",
+    "criado_em": "2024-04-25T10:30:00.000Z"
+  }
+}
+```
+
 ### Usuários (Admin Only)
 
 #### Listar Todos os Usuários
@@ -170,6 +229,42 @@ Response (200):
 {
   "sucesso": true,
   "mensagem": "Usuário desativado"
+}
+```
+
+#### Reativar Usuário
+```
+PATCH /api/usuarios/{id}/ativar
+Authorization: Bearer {token_admin}
+
+Response (200):
+{
+  "sucesso": true,
+  "mensagem": "Usuário ativado"
+}
+```
+
+#### Listar Logs de Atividade
+```
+GET /api/logs
+Authorization: Bearer {token_admin}
+
+Response (200):
+{
+  "sucesso": true,
+  "total": 25,
+  "logs": [
+    {
+      "id": 1,
+      "usuario_id": 1,
+      "usuario_nome": "Administrador",
+      "acao": "LOGIN",
+      "detalhes": null,
+      "ip_address": "::1",
+      "criado_em": "2024-05-03T12:00:00.000Z"
+    },
+    ...
+  ]
 }
 ```
 

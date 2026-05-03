@@ -1,3 +1,4 @@
+const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -6,12 +7,19 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const path = require('path');
+const { version } = require('./package.json');
 
 // Configurações
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 const JWT_SECRET = process.env.JWT_SECRET || 'sua_chave_secreta_aqui';
+
+// Criar pasta de dados se não existir
+const dataDir = path.join(__dirname, 'data');
+if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+}
 
 // Middlewares
 app.use(cors({
@@ -22,11 +30,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Inicializar banco de dados
-const dbPath = path.join(__dirname, 'data', 'integramente.db');
+const dbPath = path.join(dataDir, 'integramente.db');
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
         console.error('Erro ao conectar ao banco de dados:', err);
     } else {
+        db.run('PRAGMA foreign_keys = ON;');
         console.log('✅ Conectado ao banco de dados SQLite');
         initializeDatabase();
     }
@@ -219,6 +228,60 @@ app.post('/api/auth/login',
     }
 );
 
+// Perfil do usuário autenticado
+app.get('/api/auth/me', verificarToken, async (req, res) => {
+    try {
+        const usuario = await dbGet(
+            'SELECT id, matricula, nome, empresa, email, telefone, admin, ativo, criado_em FROM usuarios WHERE id = ?',
+            [req.usuario.id]
+        );
+
+        if (!usuario) {
+            return res.status(404).json({ erro: 'Usuário não encontrado' });
+        }
+
+        res.json({ sucesso: true, usuario });
+    } catch (err) {
+        console.error('Erro ao buscar perfil:', err);
+        res.status(500).json({ erro: 'Erro ao buscar perfil' });
+    }
+});
+
+// Alterar senha do usuário autenticado
+app.patch('/api/auth/alterar-senha',
+    verificarToken,
+    body('senha_atual').notEmpty().withMessage('Senha atual é obrigatória'),
+    body('senha_nova').isLength({ min: 6 }).withMessage('Senha nova deve ter ao menos 6 caracteres'),
+    async (req, res) => {
+        try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ erros: errors.array() });
+            }
+
+            const { senha_atual, senha_nova } = req.body;
+            const usuario = await dbGet('SELECT senha FROM usuarios WHERE id = ?', [req.usuario.id]);
+
+            if (!usuario) {
+                return res.status(404).json({ erro: 'Usuário não encontrado' });
+            }
+
+            const senhaValida = await bcryptjs.compare(senha_atual, usuario.senha);
+            if (!senhaValida) {
+                return res.status(401).json({ erro: 'Senha atual incorreta' });
+            }
+
+            const novaSenhaHash = await bcryptjs.hash(senha_nova, 10);
+            await dbRun('UPDATE usuarios SET senha = ?, atualizado_em = CURRENT_TIMESTAMP WHERE id = ?', [novaSenhaHash, req.usuario.id]);
+
+            res.json({ sucesso: true, mensagem: 'Senha alterada com sucesso' });
+        } catch (err) {
+            console.error('Erro ao alterar senha:', err);
+            res.status(500).json({ erro: 'Erro ao alterar senha' });
+        }
+    }
+);
+
 // Registrar novo usuário (apenas para empresas autorizadas)
 app.post('/api/auth/registrar',
     body('matricula').trim().notEmpty(),
@@ -335,6 +398,27 @@ app.get('/api/inscricoes', verificarToken, async (req, res) => {
     }
 });
 
+// Buscar inscrição específica do usuário
+app.get('/api/inscricoes/:id', verificarToken, async (req, res) => {
+    try {
+        const { id } = req.params;
+        const inscricao = await dbGet(
+            'SELECT * FROM inscricoes WHERE id = ? AND usuario_id = ?',
+            [id, req.usuario.id]
+        );
+
+        if (!inscricao) {
+            return res.status(404).json({ erro: 'Inscrição não encontrada' });
+        }
+
+        inscricao.dados_formulario = JSON.parse(inscricao.dados_formulario);
+        res.json({ sucesso: true, inscricao });
+    } catch (err) {
+        console.error('Erro ao buscar inscrição:', err);
+        res.status(500).json({ erro: 'Erro ao buscar inscrição' });
+    }
+});
+
 // ===== ROTAS DE USUÁRIOS (ADMIN) =====
 
 // Listar todos os usuários (apenas admin)
@@ -385,13 +469,60 @@ app.patch('/api/usuarios/:id/desativar', verificarToken, async (req, res) => {
     }
 });
 
+// Reativar usuário (apenas admin)
+app.patch('/api/usuarios/:id/ativar', verificarToken, async (req, res) => {
+    try {
+        if (!req.usuario.admin) {
+            return res.status(403).json({ erro: 'Acesso negado' });
+        }
+
+        const { id } = req.params;
+
+        await dbRun(
+            'UPDATE usuarios SET ativo = 1 WHERE id = ?',
+            [id]
+        );
+
+        await dbRun(
+            'INSERT INTO logs (usuario_id, acao, detalhes) VALUES (?, ?, ?)',
+            [req.usuario.id, 'ATIVAR_USUARIO', `Usuário ID: ${id}`]
+        );
+
+        res.json({ sucesso: true, mensagem: 'Usuário ativado' });
+    } catch (err) {
+        console.error('Erro ao ativar usuário:', err);
+        res.status(500).json({ erro: 'Erro ao ativar usuário' });
+    }
+});
+
+// Listar logs de atividade (apenas admin)
+app.get('/api/logs', verificarToken, async (req, res) => {
+    try {
+        if (!req.usuario.admin) {
+            return res.status(403).json({ erro: 'Acesso negado' });
+        }
+
+        const logs = await dbAll(`
+            SELECT l.id, l.usuario_id, u.nome AS usuario_nome, l.acao, l.detalhes, l.ip_address, l.criado_em
+            FROM logs l
+            LEFT JOIN usuarios u ON u.id = l.usuario_id
+            ORDER BY l.criado_em DESC
+        `);
+
+        res.json({ sucesso: true, total: logs.length, logs });
+    } catch (err) {
+        console.error('Erro ao listar logs:', err);
+        res.status(500).json({ erro: 'Erro ao listar logs' });
+    }
+});
+
 // ===== ROTAS DE HEALTH CHECK =====
 
 app.get('/api/health', (req, res) => {
     res.json({
         status: 'ok',
         timestamp: new Date().toISOString(),
-        version: '1.0.0'
+        version
     });
 });
 

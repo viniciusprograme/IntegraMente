@@ -8,11 +8,12 @@
     --primary-color: #46286d;
     --secondary-color: #6382c4;
     --accent-color:  #c47cd6;
-    --danger-color:  #f44336; 
+    --danger-color:  #f44336;
     --text-color:    #02273b;
     --light-bg:      #ebe2ed;
     --white:         #ebf7ff;
     --shadow: 0 2px 8px rgba(2, 39, 59, 0.12);
+    --transition: 0.3s ease;
 }
 
 html {
@@ -378,11 +379,20 @@ body {
     text-align: center;
     transition: var(--transition);
     box-shadow: var(--shadow);
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .service-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.service-card:focus-visible {
+    outline: 3px solid rgba(99, 130, 196, 0.5);
+    outline-offset: 4px;
 }
 
 .service-card .icon {
@@ -2004,6 +2014,52 @@ body {
 .btn-primary:active::after {
     width: 300px;
     height: 300px;
+}
+
+.btn,
+.btn-primary,
+.btn-secondary,
+.social-btn,
+.carousel-btn,
+.close,
+.read-more,
+.faq-item h4,
+.service-card {
+    cursor: pointer;
+}
+
+.nav-menu a,
+.footer-section a,
+.social-btn,
+.read-more,
+.video-card,
+.guide-card,
+.support-card {
+    transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
+}
+
+.nav-menu a:hover,
+.footer-section a:hover,
+.read-more:hover,
+.social-btn:hover {
+    color: var(--secondary-color);
+}
+
+.social-btn:hover {
+    background: var(--secondary-color);
+}
+
+.guide-card:hover,
+.video-card:hover,
+.support-card:hover,
+.faq-item:hover,
+.service-detail-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.faq-item h4:hover {
+    color: var(--secondary-color);
 }
 
 /* ===== SUCCESS CARD STYLES ===== */
