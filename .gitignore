@@ -1,0 +1,49 @@
+# Dependências
+node_modules/
+package-lock.json
+
+# Variáveis de ambiente (NUNCA commitar .env com dados sensíveis)
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/settings.json
+.vscode/launch.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Banco de dados local
+backend/data/*.db
+backend/data/*.sqlite
+backend/data/backup/
+
+# Build
+dist/
+build/
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# OS
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Testes
+coverage/
+.nyc_output/
+
+# Temporários
+temp/
+tmp/
+*.bak

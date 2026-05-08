@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "ms-vscode.extension-pack-for-java",
+    "ritwickdey.LiveServer",
+    "eamodio.gitlens",
+    "ms-azuretools.vscode-docker",
+    "charliermarsh.ruff",
+    "REST-Client.rest-client",
+    "humao.rest-client"
+  ]
+}
